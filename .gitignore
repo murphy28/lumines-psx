@@ -1,0 +1,38 @@
+# C/C++ build files
+*.o
+*.a
+*.so
+*.lib
+*.dll
+*.exe
+*.out
+*.elf
+*.dep
+
+# PSX build files
+*.ps-exe
+*.sym
+*.map
+*.cpe
+*.cue
+*.bin
+*.iso
+*.psexe
+*.lst
+
+# Large archive file
+psyq-4.7-converted-full.7z
+
+# Temporary/backup files
+*~
+*.swp
+*.bak
+
+# IDE/editor directories
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Project-specific directories to ignore
+/psyq/
