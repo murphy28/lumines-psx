@@ -5,6 +5,8 @@
 // Controller Instance
 GamePad player1;
 
+int activeTheme = 10;
+
 int main(void)
 {
     // 1. Initialize Hardware
@@ -21,14 +23,34 @@ int main(void)
     // 4. Main Loop
     while (1)
     {
+        Grid_Update();
+
         // Poll Input
         Pad_Update(&player1);
 
         // Update Game Logic
-        if(Pad_GetButton(&player1, PAD_LEFT))  Grid_UpdateOffset(-2, 0);
-        if(Pad_GetButton(&player1, PAD_RIGHT)) Grid_UpdateOffset(2, 0);
-        if(Pad_GetButton(&player1, PAD_UP))    Grid_UpdateOffset(0, -2);
-        if(Pad_GetButton(&player1, PAD_DOWN))  Grid_UpdateOffset(0, 2);
+        if(Pad_GetButtonDown(&player1, PAD_LEFT))    {
+            Player_MoveLeft();
+        }
+        if(Pad_GetButtonDown(&player1, PAD_RIGHT))  {
+            Player_MoveRight();
+        }
+
+        if(Pad_GetButton(&player1, PAD_DOWN))  {
+            Player_SlamBlock();
+        }
+
+        if(Pad_GetButtonUp(&player1, PAD_DOWN))  {
+            Player_UnlockDrop();
+        }
+
+        if(Pad_GetButtonDown(&player1, PAD_CIRCLE))  {
+            Player_RotateCounterClockwise();
+        }
+
+        if(Pad_GetButtonDown(&player1, PAD_CROSS) || Pad_GetButtonDown(&player1, PAD_UP))  {
+            Player_RotateClockwise();
+        }
 
         // Render Frame
         System_ClearOT(); // Prepare Ordering Table
