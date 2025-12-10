@@ -2,18 +2,18 @@
 #define GAME_GRID_H
 
 #include "../core/system.h"
+#include "player.h" // Needed for PlaceBlock
+
+#define BLOCK_SIZE  16
+#define GRID_W      16
+#define GRID_H      10
 
 void Grid_Init(void);
 void Grid_Update(void);
-void Grid_UpdateOffset(int dx, int dy);
 void Grid_Draw(void);
 void Grid_SetTheme(int themeIndex);
 
-void Player_MoveLeft(void);
-void Player_MoveRight(void);
-void Player_SlamBlock(void);
-void Player_RotateClockwise(void);
-void Player_RotateCounterClockwise(void);
-void Player_UnlockDrop(void);
+int Grid_IsMoveValid(int x, int y);
+void Grid_PlaceBlock(ActivePiece* p);
 
 #endif

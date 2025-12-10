@@ -10,6 +10,8 @@ DRIVERS_DIR = drivers
 SRCS = main.c \
        $(CORE_DIR)/system.c \
        $(GAME_DIR)/grid.c \
+       $(GAME_DIR)/player.c \
+       $(GAME_DIR)/theme.c \
        $(DRIVERS_DIR)/pad.c
 
 # 3. Include Paths
