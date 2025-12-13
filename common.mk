@@ -54,3 +54,26 @@ endef
 # convert HIT to bin
 %.o: %.HIT
 	$(call OBJCOPYME)
+
+.PHONY: generate-llm-file
+generate-llm-file:
+	@echo "Generating codebase context for LLM..."
+	find . -path ./assets -prune -o -type f \( -name "*.c" -o -name "*.h" \) -print | repomix --stdin --output ../lumines-psx-llm.xml --quiet
+
+.PHONY: install-repomix
+install-repomix:
+	npm install -g repomix
+
+.PHONY: clean
+clean:
+	find . -name "*.o" -type f -delete
+	find . -name "*.map" -type f -delete
+	find . -name "*.dep" -type f -delete
+
+	find . -name "*.elf" -type f -delete
+	find . -name "*.ps-exe" -type f -delete
+
+
+	echo "All clean!"
+
+all: generate-llm-file

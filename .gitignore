@@ -36,3 +36,6 @@ psyq-4.7-converted-full.7z
 
 # Project-specific directories to ignore
 /psyq/
+
+# LLM Context files
+*llm.xml
