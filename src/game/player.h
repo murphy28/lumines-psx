@@ -25,8 +25,8 @@ void Player_Update(void); // New consolidated update function
 void Player_MoveLeft(void);
 void Player_MoveRight(void);
 void Player_SlamBlock(void);
-void Player_RotateClockwise(void);
-void Player_RotateCounterClockwise(void);
+void Player_RotateCW(void);
+void Player_RotateCCW(void);
 void Player_UnlockDrop(void);
 
 #endif

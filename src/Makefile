@@ -9,9 +9,11 @@ DRIVERS_DIR = drivers
 # 2. Source Files
 SRCS = main.c \
        $(CORE_DIR)/system.c \
+       $(CORE_DIR)/input.c \
        $(GAME_DIR)/grid.c \
        $(GAME_DIR)/player.c \
        $(GAME_DIR)/theme.c \
+       $(GAME_DIR)/session.c \
        $(DRIVERS_DIR)/pad.c
 
 # 3. Include Paths

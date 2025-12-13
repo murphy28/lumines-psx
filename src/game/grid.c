@@ -6,6 +6,7 @@
 // Assets
 #include "../assets/bg_left.h"
 #include "../assets/bg_right.h"
+#include "../core/vram_map.h"
 
 #define TOTAL_CELLS (GRID_W * GRID_H)
 #define COLOR_GRID_LINES 40, 42, 44
@@ -74,10 +75,10 @@ void Grid_Init(void) {
   Grid_SetTheme(10);
 
   // Texture Loading
-  LoadTexture((u_long *)bg_left_tim, &bgLeftInfo, 320, 0);
-  LoadTexture((u_long *)bg_right_tim, &bgRightInfo, 512, 0);
-  bgLeftInfo.mode = getTPage(2, 0, 320, 0);
-  bgRightInfo.mode = getTPage(2, 0, 512, 0);
+  LoadTexture((u_long *)bg_left_tim, &bgLeftInfo, TEX_BG_LEFT_X, TEX_BG_LEFT_Y);
+  LoadTexture((u_long *)bg_right_tim, &bgRightInfo, TEX_BG_RIGHT_X, TEX_BG_RIGHT_Y);
+  bgLeftInfo.mode = getTPage(2, 0, TEX_BG_LEFT_X, TEX_BG_LEFT_Y);
+  bgRightInfo.mode = getTPage(2, 0, TEX_BG_RIGHT_X, TEX_BG_RIGHT_Y);
 
   score = 0;
 

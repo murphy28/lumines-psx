@@ -92,14 +92,14 @@ void Player_UnlockDrop(void) {
 }
 
 // Rotation Logic
-void Player_RotateClockwise(void) {
+void Player_RotateCW(void) {
     int c0 = player.cells[0]; int c1 = player.cells[1];
     int c2 = player.cells[2]; int c3 = player.cells[3];
     player.cells[0] = c2; player.cells[1] = c0;
     player.cells[2] = c3; player.cells[3] = c1;
 }
 
-void Player_RotateCounterClockwise(void) {
+void Player_RotateCCW(void) {
     int c0 = player.cells[0]; int c1 = player.cells[1];
     int c2 = player.cells[2]; int c3 = player.cells[3];
     player.cells[0] = c1; player.cells[1] = c3;
