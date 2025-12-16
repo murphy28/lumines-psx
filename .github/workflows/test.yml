@@ -1,0 +1,45 @@
+name: Test Build
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install MIPS Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu make p7zip-full wget
+
+      - name: Setup PsyQ SDK
+        id: cache-psyq
+        uses: actions/cache@v4
+        with:
+          path: psyq
+          key: psyq-4.7-full-v2
+
+      - name: Download PsyQ (If not cached)
+        if: steps.cache-psyq.outputs.cache-hit != 'true'
+        run: |
+          wget -q http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+          7z x psyq-4.7-converted-full.7z -opsyq
+
+      - name: Compile Project
+        run: |
+          make -C src lumines.ps-exe
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumines-test-build
+          path: src/lumines.ps-exe
