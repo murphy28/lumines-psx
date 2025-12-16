@@ -55,14 +55,11 @@ endef
 %.o: %.HIT
 	$(call OBJCOPYME)
 
-.PHONY: generate-llm-file
-generate-llm-file:
+# Utilizes Repomix ``npm install -g repomix``
+.PHONY: llm
+llm:
 	@echo "Generating codebase context for LLM..."
 	find . -path ./assets -prune -o -type f \( -name "*.c" -o -name "*.h" \) -print | repomix --stdin --output ../lumines-psx-llm.xml --quiet
-
-.PHONY: install-repomix
-install-repomix:
-	npm install -g repomix
 
 .PHONY: clean
 clean:
@@ -75,5 +72,3 @@ clean:
 
 
 	echo "All clean!"
-
-all: generate-llm-file
