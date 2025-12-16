@@ -70,6 +70,9 @@ void System_Display(void) {
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
 
+    // Flush debug text buffer
+    FntFlush(-1);
+
     // Send OT to GPU
     DrawOTag(&ot[db][OTLEN - 1]);
 

@@ -5,16 +5,20 @@ TARGET = lumines
 CORE_DIR    = core
 GAME_DIR    = game
 DRIVERS_DIR = drivers
+STATES_DIR = states
 
 # 2. Source Files
 SRCS = main.c \
        $(CORE_DIR)/system.c \
        $(CORE_DIR)/input.c \
+       $(CORE_DIR)/statemanager.c \
        $(GAME_DIR)/grid.c \
        $(GAME_DIR)/player.c \
        $(GAME_DIR)/theme.c \
        $(GAME_DIR)/session.c \
-       $(DRIVERS_DIR)/pad.c
+       $(DRIVERS_DIR)/pad.c \
+       $(STATES_DIR)/title.c \
+       $(STATES_DIR)/arcade.c
 
 # 3. Include Paths
 # -I. tells the compiler to look in the current folder (for main.c/headers)
