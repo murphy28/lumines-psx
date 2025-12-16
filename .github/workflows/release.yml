@@ -26,13 +26,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: psyq-4.7-converted-full
-          key: psyq-4.7-full
+          key: psyq-4.7-full-v2
 
       - name: Download PsyQ (If not cached)
         if: steps.cache-psyq.outputs.cache-hit != 'true'
         run: |
           wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-          7z x psyq-4.7-converted-full.7z -o.
+          7z x psyq-4.7-converted-full.7z -opsyq
+          echo "Checking for header file..."
+          ls -l psyq/include/libetc.h
 
       - name: Generate CalVer Version
         id: version
