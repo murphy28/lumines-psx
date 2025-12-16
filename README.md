@@ -2,6 +2,8 @@
 
 **Lumines PSX** is a homebrew recreation of the puzzle classic _Lumines_, built from the ground up for the original PlayStation (PSX) console.
 
+![Lumines PSX logo on top of screenshot](https://i.imgur.com/DqCE133.png)
+
 This project was developed primarily as a learning exercise to understand the PSX hardware architecture and game loop management in C. There are no concrete plans to develop this further than its current state, but updates may be sprinkled occasionally.
 
 ## Disclaimer & Acknowledgments
