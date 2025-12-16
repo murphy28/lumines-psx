@@ -39,3 +39,6 @@ psyq-4.7-converted-full.7z
 
 # LLM Context files
 *llm.xml
+
+# Clang configuration (This just points --include-directory to psyq, for proper lang support in Zed)
+.clangd
