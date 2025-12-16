@@ -1,0 +1,59 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install MIPS Toolchain & Utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu make p7zip-full wget
+
+      - name: Setup PsyQ SDK
+        id: cache-psyq
+        uses: actions/cache@v4
+        with:
+          path: psyq-4.7-converted-full
+          key: psyq-4.7-full
+
+      - name: Download PsyQ (If not cached)
+        if: steps.cache-psyq.outputs.cache-hit != 'true'
+        run: |
+          wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+          7z x psyq-4.7-converted-full.7z -o.
+
+      - name: Generate CalVer Version
+        id: version
+        run: |
+          DATE_VERSION=$(date +'%Y.%m.%d')
+          echo "calver=$DATE_VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $DATE_VERSION"
+
+      - name: Build Project
+        run: |
+          make -C src lumines.ps-exe
+
+      - name: Rename and Move Artifact
+        run: |
+          mv src/lumines.ps-exe lumines.${{ steps.version.outputs.calver }}.ps-exe
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ steps.version.outputs.calver }}
+          tag_name: v${{ steps.version.outputs.calver }}
+          files: lumines.${{ steps.version.outputs.calver }}.ps-exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
