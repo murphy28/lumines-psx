@@ -12,6 +12,7 @@ static int _pendingChange = 0;
 
 #include "../states/title.h"
 #include "../states/arcade.h"
+#include "../states/gameover.h"
 
 static void setupStatePointers(GameState state) {
     switch(state) {
@@ -24,6 +25,11 @@ static void setupStatePointers(GameState state) {
             _currentInit = StateArcade_Init;
             _currentUpdate = StateArcade_Update;
             _currentExit = StateArcade_Exit;
+            break;
+        case STATE_GAMEOVER:
+            _currentInit = StateGameover_Init;
+            _currentUpdate = StateGameover_Update;
+            _currentExit = StateGameover_Exit;
             break;
         default:
             _currentInit = NULL;

@@ -2,6 +2,7 @@
 #include "grid.h" // Needs to know about grid boundaries
 #include <libgte.h>
 #include <stdlib.h> // for rand()
+#include "../core/statemanager.h"
 
 ActivePiece player;
 
@@ -59,8 +60,7 @@ void Player_Update(void) {
         } else {
             // Landed
             if (player.gridY < -1) {
-                // Game Over logic (reset for now)
-                Grid_Init();
+                StateManager_ChangeState(STATE_GAMEOVER);
                 return;
             }
             Grid_PlaceBlock(&player);

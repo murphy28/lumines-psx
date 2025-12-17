@@ -19,7 +19,9 @@ void StateTitle_Update() {
 
     System_ClearOT();
 
-    FntPrint("Yo wassup");
+    FntPrint("Lumines PSX\n");
+    FntPrint("WIP Title Screen\n\n");
+    FntPrint("Press X or START");
 
     System_Display();
 }

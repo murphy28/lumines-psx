@@ -16,4 +16,6 @@ void Grid_SetTheme(int themeIndex);
 int Grid_IsMoveValid(int x, int y);
 void Grid_PlaceBlock(ActivePiece* p);
 
+int GetScore(void);
+
 #endif

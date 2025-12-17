@@ -45,6 +45,10 @@ static int score = 0;
 static int currentTimelineBlockCount = 0;
 #define BLOCK_SCORE_VALUE 1
 
+int GetScore() {
+    return score;
+}
+
 void Grid_SetTheme(int themeIndex) {
   if (themeIndex < 0)
     themeIndex = TOTAL_THEMES - 1;
@@ -432,4 +436,6 @@ void Grid_Draw(void) {
 
   // 5. Draw Timeline
   drawTimeline(2);
+
+  FntPrint("Score: %d\n", score);
 }

@@ -18,7 +18,8 @@ SRCS = main.c \
        $(GAME_DIR)/session.c \
        $(DRIVERS_DIR)/pad.c \
        $(STATES_DIR)/title.c \
-       $(STATES_DIR)/arcade.c
+       $(STATES_DIR)/arcade.c \
+       $(STATES_DIR)/gameover.c
 
 # 3. Include Paths
 # -I. tells the compiler to look in the current folder (for main.c/headers)
